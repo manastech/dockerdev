@@ -1,6 +1,6 @@
 FROM golang:alpine AS build
 
-COPY go.mod monitor.go /go/src/
+COPY go.mod go.sum monitor.go /go/src/
 RUN cd /go/src && go build monitor.go
 
 FROM jwilder/nginx-proxy:latest AS release
@@ -14,7 +14,7 @@ COPY *.conf /etc/nginx/conf.d/
 
 # override nginx-proxy templating
 COPY nginx.tmpl Procfile /app/
-COPY --from build /go/src/monitor /app/
+COPY --from=build /go/src/monitor /app/
 
 # COPY htdocs /var/www/default/htdocs/
 

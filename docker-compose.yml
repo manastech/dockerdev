@@ -10,7 +10,7 @@ networks:
 services:
   proxy:
     build: .
-    image: juanwaj/dockerdev
+    image: manastech/dockerdev
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:

@@ -21,7 +21,7 @@ docker run -d --restart=always \
   --log-opt max-size=10m --log-opt max-file=3 \
   --network shared --name dockerdev \
   -e DOMAIN_TLD=lvh.me \
-  juanwaj/dockerdev
+  manastech/dockerdev
 ```
 
 
@@ -65,7 +65,7 @@ docker run -d --restart=always \
   --log-opt max-size=10m --log-opt max-file=3 \
   --network shared --name dockerdev \
   -e DOMAIN_TLD=lvh.me \
-  juanwaj/dockerdev
+  manastech/dockerdev
 ```
 
 4. Restart containers so they reregister, which lets the underlying NGINX container properly configure vhosts now that there are certs.

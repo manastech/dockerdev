@@ -1,4 +1,4 @@
-FROM golang:alpine AS build
+FROM golang:1.20-alpine AS build
 
 COPY go.mod go.sum monitor.go /go/src/
 RUN cd /go/src && go build monitor.go

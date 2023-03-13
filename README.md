@@ -35,6 +35,17 @@ For example, if you have a container `web` in a project named `foo`, once the co
 
 If the container was created **before** dockerdev was installed, **you need to recreate the container**. This means, if you are using docker compose, you need to run `docker-compose down` and `docker-compose up` to allow the new container to be added to the `shared` network.
 
+### Web Port
+
+The proxy will pick the first opened port of the container and fallback to port 80. In case your container has multiple ports opened and the proxy picked the wrong one (you get 502 Bad Gateway responses) you can add the `VIRTUAL_PORT` environment variable to specify the port to use. For example:
+
+```yaml
+services:
+  web:
+    environment:
+      VIRTUAL_PORT: "4567"
+```
+
 ### Using HTTPS/SSL
 
 You can also offload SSL to the dockerdev container. That way, you can expose your applications through HTTPS without modifying their source code.

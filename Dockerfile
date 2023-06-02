@@ -4,8 +4,11 @@ COPY . /src
 RUN cd /src && shards build --release --static
 
 # RELEASE image
-FROM jwilder/nginx-proxy:alpine AS release
-RUN apk add --no-cache dnsmasq
+FROM jwilder/nginx-proxy:latest AS release
+
+RUN apt-get -q update && \
+    apt-get install -y -q --no-install-recommends dnsmasq && \
+    apt-get -q clean && rm -r /var/lib/apt/lists/*
 
 # override nginx configs & nginx-proxy templating
 COPY *.conf /etc/nginx/conf.d/
